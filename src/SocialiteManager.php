@@ -14,7 +14,7 @@ class SocialiteManager extends Manager implements Contracts\Factory
     /**
      * Get a driver instance.
      *
-     * @param  string  $driver
+     * @param  string $driver
      * @return mixed
      */
     public function with($driver)
@@ -74,7 +74,21 @@ class SocialiteManager extends Manager implements Contracts\Factory
         $config = $this->app['config']['services.linkedin'];
 
         return $this->buildProvider(
-          'Laravel\Socialite\Two\LinkedInProvider', $config
+            'Laravel\Socialite\Two\LinkedInProvider', $config
+        );
+    }
+
+    /**
+     * Create an instance of the specified driver.
+     *
+     * @return \Laravel\Socialite\Two\AbstractProvider
+     */
+    protected function createTwitchDriver()
+    {
+        $config = $this->app['config']['services.twitch'];
+        
+        return $this->buildProvider(
+            'Laravel\Socialite\Two\TwitchProvider', $config
         );
     }
 
