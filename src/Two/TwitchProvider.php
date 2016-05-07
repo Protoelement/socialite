@@ -66,6 +66,28 @@ class TwitchProvider extends AbstractProvider implements ProviderInterface
         ]);
     }
 
+    /**
+     * Get the POST fields for the token request.
+     *
+     * @param  string  $code
+     * @return array
+     */
+    protected function getTokenFields($code)
+    {
+        return [
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'code' => $code,
+            'redirect_uri' => $this->redirectUrl,
+            'grant_type' => 'authorization_code',
+        ];
+    }
+
+    /**
+     * Get the headers associated with every request
+     *
+     * @return array
+     */
     protected function getRequestOptions()
     {
         return [
